@@ -29,7 +29,7 @@ AWS IoT Core: Connects IoT devices to AWS cloud services and facilitates message
 
 Amazon Managed Streaming for Apache Kafka (MSK): Simplifies the process of building and running applications that use Apache Kafka for streaming data processing. 
 
-3. Data Storage and Management
+2. Data Storage and Management
 Selecting appropriate storage solutions is crucial for efficient data access and management. 
 Amazon S3 (Simple Storage Service): Highly scalable and durable object storage for various data types, often used as the foundation for data lakes due to its cost-effectiveness,
 durability (11 nines), and seamless integration with other AWS services.
@@ -47,7 +47,7 @@ and transactional workloads.
 Amazon Redshift: A fully managed cloud data warehouse optimized for analytical queries on large datasets (petabytes), using columnar storage and massively parallel processing to 
 deliver fast query results. 
 
-5. Data Processing and Transformation
+3. Data Processing and Transformation
 This stage involves cleaning, transforming, and preparing the ingested data for analysis. 
 AWS Glue: Utilizes its ETL capabilities to transform and cleanse data, supporting various sources and targets, and allowing for Python or Apache Spark-based transformations.
 
@@ -61,7 +61,7 @@ AWS Glue DataBrew: A visual data preparation tool for cleaning and normalizing d
 
 AWS Step Functions: A serverless workflow service for coordinating and orchestrating complex data processing pipelines involving multiple AWS services. 
 
-7. Data Warehousing and Analytics
+4. Data Warehousing and Analytics
 This involves storing transformed data for querying and analysis. 
 Amazon Redshift: Provides high-performance data warehousing for storing and analyzing structured and semi-structured data with SQL-based tools.
 
@@ -71,7 +71,7 @@ Amazon Athena: Can be used for analyzing data in data lakes built on Amazon S3.
 
 Amazon EMR: Used for analytical workloads, including processing data in S3-based data lakes. 
 
-9. Data Governance and Security
+5. Data Governance and Security
 Ensuring data quality, security, and compliance throughout the lifecycle is crucial. 
 AWS Lake Formation: Simplifies building, managing, and securing data lakes by automating data cataloging, cleaning, transforming, and securing data access with fine-grained permissions.
 
@@ -85,7 +85,7 @@ Amazon Macie: Discovers and protects sensitive data (like PII) in Amazon S3 buck
 
 AWS Clean Rooms: Enables secure collaboration with partners to analyze collective datasets without sharing or copying the underlying raw data. 
 
-11. Orchestration and Workflow Management
+6. Orchestration and Workflow Management
 Automating and coordinating data workflows for efficiency. 
 AWS Step Functions: Orchestrates serverless workflows, coordinating multiple AWS services into logical sequences of steps.
 
