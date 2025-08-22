@@ -1,0 +1,86 @@
+# RDS: Relational Database Service
+
+A managed DB service for DB use SQL a query
+
+It allows you to create databases in the cloud that are
+* Postgres
+* Oracle
+* MySQL
+* MariaDB
+* Microsoft SQL Server
+* Aurora (AWS proprietary database)
+
+Advantages of RDS over deploying a database in EC2
+* Managed service
+* OS patching level
+* Continuous backups and restore to specific timestamps (Point in Time Restore)
+* Monitoring dashboards
+* Read replicas for improved read performance
+* Multi AZ setup for DR (Disaster Recovery)
+* Maintenance windows for upgrades
+* Scaling capability (vertical and horizontal)
+* But you can’t SSH into your instances (amazon manages them for you)
+
+RDS Read replicas for read scalability
+* Up to 5 read replicas
+* Within AZ, Cross AZ or Cross region
+* Replication is Async, so reads are eventually consistent
+* Replicas can be promoted to their own DB
+* Applications must update the connection string to leverage read replicas
+
+RDS Read Replicas – Use Cases
+- You have a production database that is taking on normal load
+- You want to run a reporting application to run some analytics
+- You create a Read Replica to run the new workload there
+- The production application is unaffected
+- Read replicas are used for SELECT (=read) only kind of statements (not INSERT, UPDATE, DELETE)
+
+RDS Read Replicas – Network Cost
+- In AWS there’s a network cost when data goes from one AZ to another 
+- To reduce the cost, you can have your Read Replicas in the same AZ
+
+RDS Multi AZ (Disaster Recovery)
+* SYNC replication
+* One DNS name - automatic app failover to standby
+* Increase availability
+* Failover in case of loss of AZ, loss of network, instance or storage failure
+* No manual intervention in apps
+* Not used for scaling (only disaster recovery)
+
+RDS Backups
+* Backups are automatically enabled in RDS
+* Automated backups:
+    * Daily full snapshot of the database
+    * Capture transaction logs in real time
+    * Ability to restore to any point in time
+    * 7 days retention (can be increased to 35 days)
+* DB Snapshots:
+    * Manually triggered by the user
+    * Retention of backup for as long as you want
+
+RDS Encryption
+* Encryption at rest capability with AWS KMS - AES-256 encryption
+* SSL certificates to encrypt data to RDS in flight
+* To enforce SSL:
+    * PostgreSQL: rds.force_ssl=1 in the AWS RDS Console (parameter groups)
+* TO connect using SSL:
+    * Provide the SSL Trust certificate (can be downloaded from AWS)
+    * Provide SSL options when connection to the database
+	
+	
+RDS Encryption Operations
+- Encrypting RDS backups
+	- Snapshots of un-encrypted RDS databases are un-encrypted 
+	- Snapshots of encrypted RDS databases are encrypted
+	- Can copy a snapshot into an encrypted one
+- To encrypt an un-encrypted RDS database: 
+	- Create a snapshot of the un-encrypted database
+	- Copy the snapshot and enable encryption for the snapshot
+	- Restore the database from the encrypted snapshot
+	- Migrate applications to the new database, and delete the old database
+
+RDS Security
+* RDS databases are usually deployed within a private subnet, not in a public one
+* RDS Security works by leveraging security groups (the same concept as for EC2 instances) - it controls who can communicate with RDS
+* IAM policies help control who can manage RDS
+* Traditional username and password can
